@@ -1,4 +1,4 @@
-package com.example.mbserver.domain;
+package com.example.mbserver.user;
 
 import javax.persistence.*;
 import java.util.Set;
