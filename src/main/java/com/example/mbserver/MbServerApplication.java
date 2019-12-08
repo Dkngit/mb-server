@@ -1,7 +1,7 @@
 package com.example.mbserver;
 
-import com.example.mbserver.user.User;
-import com.example.mbserver.user.UserRepository;
+import com.example.mbserver.dao.UserRepository;
+import com.example.mbserver.entity.User;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.SpringApplication;

@@ -1,5 +1,8 @@
-package com.example.mbserver.user;
+package com.example.mbserver.web;
 
+import com.example.mbserver.dao.UserPageRepository;
+import com.example.mbserver.dao.UserRepository;
+import com.example.mbserver.entity.User;
 import com.example.mbserver.security.MBUserDetails;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;

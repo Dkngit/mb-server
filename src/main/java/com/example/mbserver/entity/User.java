@@ -1,14 +1,17 @@
-package com.example.mbserver.user;
+package com.example.mbserver.entity;
 
-import javax.persistence.*;
+import javax.persistence.ElementCollection;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.ManyToMany;
 import java.util.Set;
 
 @Entity
-public class User {
+public class User extends BaseEntity {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+//    @Id
+//    @GeneratedValue(strategy = GenerationType.AUTO)
+//    private Long id;
 
     /**
      * 用户名
@@ -20,6 +23,20 @@ public class User {
     private String password;
     private boolean enabled;
     private boolean tokenExpired;
+//    private Date createDate;
+//    private Date modifyDate;
+
+    @ManyToMany
+//    @JoinTable
+    private Set<Team> team;
+
+    public Set<Team> getTeam() {
+        return team;
+    }
+
+    public void setTeam(Set<Team> team) {
+        this.team = team;
+    }
 
     @ElementCollection(fetch = FetchType.EAGER)
     private Set<String> roles;
@@ -38,14 +55,6 @@ public class User {
 
     public void setUsername(String username) {
         this.username = username;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
     }
 
     public String getEmail() {

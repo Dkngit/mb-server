@@ -1,6 +1,6 @@
 package com.example.mbserver.security;
 
-import com.example.mbserver.user.UserRepository;
+import com.example.mbserver.dao.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
