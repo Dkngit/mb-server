@@ -26,7 +26,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .httpBasic().and()
                 .authorizeRequests()
                 .antMatchers("/").permitAll()
-                .antMatchers("/api/resource/*", "/api/user/*").hasAnyRole("USER", "ADMIN")
+                .antMatchers("/api/resource/*", "/api/user/*", "/api/team/*").hasAnyRole("USER", "ADMIN")
                 .anyRequest().authenticated()
                 .and().csrf()
                 .csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse());

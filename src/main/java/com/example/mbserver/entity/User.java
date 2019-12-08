@@ -26,7 +26,7 @@ public class User extends BaseEntity {
 //    private Date createDate;
 //    private Date modifyDate;
 
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.EAGER)
 //    @JoinTable
     private Set<Team> team;
 
