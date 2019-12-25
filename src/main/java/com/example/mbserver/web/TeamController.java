@@ -4,16 +4,16 @@ import com.example.mbserver.dao.TeamPageRepository;
 import com.example.mbserver.entity.Team;
 import com.example.mbserver.pojo.MBPageRequest;
 import org.springframework.data.domain.Page;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
 
 /**
  * @since 2019/12/8
  */
-@Controller
+@RestController
 @RequestMapping("api/team")
 public class TeamController {
 
