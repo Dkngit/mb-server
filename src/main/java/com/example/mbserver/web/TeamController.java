@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
+import java.security.Principal;
+import java.util.Date;
 
 /**
  * @since 2019/12/8
@@ -26,7 +28,21 @@ public class TeamController {
     }
 
     @RequestMapping("save")
-    public void save(@RequestBody Team team) {
+    public void save(@RequestBody Team team, Principal principal) {
+        Date now = new Date();
+        String name = principal.getName();
+        if (team.getId() == 0) {
+            team.setCreateOn(now);
+            team.setCreateBy(name);
+        } else {
+            team.setModifyOn(now);
+            team.setModifyBy(name);
+        }
         pageRepository.save(team);
+    }
+
+    @RequestMapping("delete")
+    public void delete(@RequestBody Team team) {
+        pageRepository.deleteById(team.getId());
     }
 }
