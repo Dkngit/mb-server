@@ -1,7 +1,6 @@
 package com.example.mbserver.web;
 
 import com.example.mbserver.dao.UserPageRepository;
-import com.example.mbserver.dao.UserRepository;
 import com.example.mbserver.entity.User;
 import com.example.mbserver.security.MBUserDetails;
 import org.springframework.data.domain.Page;
@@ -21,8 +20,6 @@ public class UsersController {
 
     @Resource
     private UserPageRepository userPageRepository;
-    @Resource
-    private UserRepository userRepository;
 
 
     @RequestMapping("login")
@@ -38,10 +35,10 @@ public class UsersController {
 
     @RequestMapping("passwordEdit")
     public void passwordEdit(@RequestBody User sendUser, @AuthenticationPrincipal MBUserDetails userDetails) {
-        User user = userRepository.findUserByUsername(userDetails.getUsername());
+        User user = userPageRepository.findUserByUsername(userDetails.getUsername());
         PasswordEncoder passwordEncoder = PasswordEncoderFactories.createDelegatingPasswordEncoder();
         user.setPassword(passwordEncoder.encode(sendUser.getPassword()));
-        userRepository.save(user);
+        userPageRepository.save(user);
     }
 
     @RequestMapping("list")

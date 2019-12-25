@@ -1,20 +1,21 @@
 package com.example.mbserver.security;
 
-import com.example.mbserver.dao.UserRepository;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.example.mbserver.dao.UserPageRepository;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
+import javax.annotation.Resource;
+
 @Service
 public class MBUserDetailsService implements UserDetailsService {
 
-    @Autowired
-    private UserRepository userRepository;
+    @Resource
+    private UserPageRepository userPageRepository;
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        return new MBUserDetails(userRepository.findUserByUsername(username));
+        return new MBUserDetails(userPageRepository.findUserByUsername(username));
     }
 }

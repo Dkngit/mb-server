@@ -24,4 +24,9 @@ public class TeamController {
     public Page<Team> list(@RequestBody MBPageRequest pageR) {
         return pageRepository.findAll(pageR.pageable());
     }
+
+    @RequestMapping("save")
+    public void save(@RequestBody Team team) {
+        pageRepository.save(team);
+    }
 }

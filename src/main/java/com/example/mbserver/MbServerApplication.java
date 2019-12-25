@@ -1,6 +1,6 @@
 package com.example.mbserver;
 
-import com.example.mbserver.dao.UserRepository;
+import com.example.mbserver.dao.UserPageRepository;
 import com.example.mbserver.entity.User;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -18,7 +18,7 @@ import java.util.Collections;
 public class MbServerApplication {
 
     @Resource
-    private UserRepository userRepository;
+    private UserPageRepository userPageRepository;
 
     private static final Logger log = LoggerFactory.getLogger(MbServerApplication.class);
 
@@ -30,7 +30,7 @@ public class MbServerApplication {
     public void doSomethingAfterStartup() {
         System.out.println("hello world, I have just started up");
 //        log.info("hello world, I have just started up");
-        User admin = userRepository.findUserByUsername("admin");
+        User admin = userPageRepository.findUserByUsername("admin");
         if (admin == null) {
             admin = new User();
             admin.setEnabled(true);
@@ -40,7 +40,7 @@ public class MbServerApplication {
 
             admin.setRoles(Collections.singleton("ROLE_ADMIN"));
 
-            userRepository.save(admin);
+            userPageRepository.save(admin);
 //			System.out.println("new admin User, username:admin, password:admin");
             log.info("new admin User, username:admin, password:admin");
         }

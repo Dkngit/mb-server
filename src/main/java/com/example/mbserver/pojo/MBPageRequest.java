@@ -1,6 +1,8 @@
 package com.example.mbserver.pojo;
 
+
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 
 /**
  * @since 2019/12/8
@@ -26,7 +28,7 @@ public class MBPageRequest {
         this.pageSize = pageSize;
     }
 
-    public PageRequest pageable() {
+    public Pageable pageable() {
         System.out.println("page:" + this.pageIndex + "-" + this.pageSize);
         return PageRequest.of(this.pageIndex, this.pageSize);
     }
