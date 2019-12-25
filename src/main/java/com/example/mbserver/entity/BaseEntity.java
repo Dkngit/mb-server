@@ -16,9 +16,21 @@ public class BaseEntity {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
+    /**
+     * 创建者
+     */
     private String createBy;
+    /**
+     * 创建日期
+     */
     private Date createOn;
+    /**
+     * 修改者
+     */
     private String modifyBy;
+    /**
+     * 修改日期
+     */
     private Date modifyOn;
 
     public long getId() {
