@@ -5,9 +5,12 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.repository.PagingAndSortingRepository;
 
+import java.util.Set;
+
 public interface UserPageRepository extends PagingAndSortingRepository<User, Long> {
 
     User findUserByUsername(String username);
 
-    Page<User> findAllByRolesContains(String role, Pageable pageable);
+    Page<User> findAllByRolesIn(Set<String> role, Pageable pageable);
+
 }

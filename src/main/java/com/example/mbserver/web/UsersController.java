@@ -14,8 +14,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
 import java.security.Principal;
+import java.util.Collections;
 import java.util.Date;
-import java.util.Set;
 
 @RestController
 @RequestMapping("api/user")
@@ -46,7 +46,7 @@ public class UsersController {
 
     @RequestMapping("list")
     public Page<User> list(@RequestBody MBPageRequest pageR) {
-        return userPageRepository.findAllByRolesContains("ROLE_USER", pageR.pageable());
+        return userPageRepository.findAllByRolesIn(Collections.singleton("ROLE_USER"), pageR.pageable());
     }
 
     @RequestMapping("save")
@@ -56,13 +56,19 @@ public class UsersController {
         if (user.getId() == 0) {
             user.setCreateOn(now);
             user.setCreateBy(name);
-            Set<String> roles = user.getRoles();
-            roles.add("ROLE_USER");
+            user.setRoles(Collections.singleton("ROLE_USER"));
+//            Set<String> roles = user.getRoles();
+//            roles.add("ROLE_USER");
         } else {
             user.setModifyOn(now);
             user.setModifyBy(name);
         }
         userPageRepository.save(user);
+    }
+
+    @RequestMapping("delete")
+    public void delete(@RequestBody User user) {
+        userPageRepository.deleteById(user.getId());
     }
 
 
