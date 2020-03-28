@@ -17,6 +17,11 @@ public class BaseEntity {
     private long id;
 
     /**
+     * 说明
+     */
+    private String description;
+
+    /**
      * 创建者
      */
     private String createBy;
@@ -32,6 +37,14 @@ public class BaseEntity {
      * 修改日期
      */
     private Date modifyOn;
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
 
     public long getId() {
         return id;

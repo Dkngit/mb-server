@@ -10,7 +10,7 @@ import java.util.Set;
  * @since 2019/12/7
  */
 @Entity
-@Table(name = "team")
+//@Table(name = "team")
 public class Team extends BaseEntity {
 
     private String name;
