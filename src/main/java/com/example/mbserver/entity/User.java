@@ -1,9 +1,6 @@
 package com.example.mbserver.entity;
 
-import javax.persistence.ElementCollection;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.ManyToMany;
+import javax.persistence.*;
 import java.util.Set;
 
 @Entity
@@ -26,17 +23,28 @@ public class User extends BaseEntity {
 //    private Date createDate;
 //    private Date modifyDate;
 
-    @ManyToMany(fetch = FetchType.EAGER)
-//    @JoinTable
-    private Set<Team> team;
+    @OneToMany(mappedBy = "team", fetch = FetchType.EAGER)
+    private Set<TeamUser> teamUsers;
 
-    public Set<Team> getTeam() {
-        return team;
+    public Set<TeamUser> getTeamUsers() {
+        return teamUsers;
     }
 
-    public void setTeam(Set<Team> team) {
-        this.team = team;
+    public void setTeamUsers(Set<TeamUser> teamUsers) {
+        this.teamUsers = teamUsers;
     }
+
+//    @ManyToMany(fetch = FetchType.EAGER)
+////    @JoinTable
+//    private Set<Team> team;
+//
+//    public Set<Team> getTeam() {
+//        return team;
+//    }
+//
+//    public void setTeam(Set<Team> team) {
+//        this.team = team;
+//    }
 
     @ElementCollection(fetch = FetchType.EAGER)
     private Set<String> roles;

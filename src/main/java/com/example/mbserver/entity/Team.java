@@ -1,9 +1,6 @@
 package com.example.mbserver.entity;
 
-import javax.persistence.Entity;
-import javax.persistence.ManyToMany;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.util.Set;
 
 /**
@@ -18,16 +15,27 @@ public class Team extends BaseEntity {
     @OneToMany(mappedBy = "team")
     private Set<TeamServer> servers;
 
-    @ManyToMany(mappedBy = "team")
-    private Set<User> user;
+    @OneToMany(mappedBy = "team")
+    private Set<TeamUser> teamUser;
 
-    public Set<User> getUser() {
-        return user;
+    public Set<TeamUser> getTeamUser() {
+        return teamUser;
     }
 
-    public void setUser(Set<User> user) {
-        this.user = user;
+    public void setTeamUser(Set<TeamUser> teamUser) {
+        this.teamUser = teamUser;
     }
+
+//    @ManyToMany(mappedBy = "team")
+//    private Set<User> user;
+
+//    public Set<User> getUser() {
+//        return user;
+//    }
+//
+//    public void setUser(Set<User> user) {
+//        this.user = user;
+//    }
 
     public Set<TeamServer> getServers() {
         return servers;

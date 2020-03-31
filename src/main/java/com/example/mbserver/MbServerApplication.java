@@ -41,8 +41,8 @@ public class MbServerApplication {
             admin.setRoles(Collections.singleton("ROLE_ADMIN"));
 
             userPageRepository.save(admin);
-//			System.out.println("new admin User, username:admin, password:admin");
-            log.info("new admin User, username:admin, password:admin");
+			System.out.println("new admin User, username:admin, password:admin");
+//            log.info("new admin User, username:admin, password:admin");
         }
     }
 
