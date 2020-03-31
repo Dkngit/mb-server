@@ -19,7 +19,7 @@ import java.util.Date;
 
 @RestController
 @RequestMapping("api/user")
-public class UsersController {
+public class UserController {
 
     @Resource
     private UserPageRepository userPageRepository;
