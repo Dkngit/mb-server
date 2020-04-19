@@ -1,5 +1,8 @@
 package com.example.mbserver.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import javax.persistence.*;
 import java.util.Set;
 
@@ -12,9 +15,12 @@ public class Team extends BaseEntity {
 
     private String name;
 
+    //    @JsonIgnore
     @OneToMany(mappedBy = "team")
     private Set<TeamServer> servers;
 
+    //    @JsonManagedReference(value = "team-teamUser")
+    @JsonIgnore
     @OneToMany(mappedBy = "team")
     private Set<TeamUser> teamUser;
 

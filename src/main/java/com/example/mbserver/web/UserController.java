@@ -8,6 +8,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.crypto.factory.PasswordEncoderFactories;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -56,13 +57,22 @@ public class UserController {
         if (user.getId() == 0) {
             user.setCreateOn(now);
             user.setCreateBy(name);
-            user.setRoles(Collections.singleton("ROLE_USER"));
+
 //            Set<String> roles = user.getRoles();
 //            roles.add("ROLE_USER");
+            user.setRoles(Collections.singleton("ROLE_USER"));
+
+            user.setEnabled(true);
         } else {
             user.setModifyOn(now);
             user.setModifyBy(name);
         }
+
+        if (StringUtils.hasText(user.getNewPassword())) {
+            PasswordEncoder passwordEncoder = PasswordEncoderFactories.createDelegatingPasswordEncoder();
+            user.setPassword(passwordEncoder.encode(user.getNewPassword()));
+        }
+
         userPageRepository.save(user);
     }
 

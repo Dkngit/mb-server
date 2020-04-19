@@ -1,7 +1,11 @@
 package com.example.mbserver.entity;
 
 
-import javax.persistence.*;
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
+import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 /**
  * @since 2020/3/31
@@ -12,11 +16,12 @@ public class TeamUser extends BaseEntity {
     private String name;
     private int experience;
 
-//    @OneToOne(mappedBy = "teamUser")
+    //    @JsonBackReference(value = "team-teamUser")
     @ManyToOne
     @JoinColumn(nullable = false)
     private Team team;
 
+    //    @JsonBackReference(value = "user-teamUser")
     @ManyToOne
     @JoinColumn(nullable = false)
     private User user;

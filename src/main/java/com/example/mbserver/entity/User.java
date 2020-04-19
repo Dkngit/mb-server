@@ -1,5 +1,8 @@
 package com.example.mbserver.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import javax.persistence.*;
 import java.util.Set;
 
@@ -18,11 +21,15 @@ public class User extends BaseEntity {
     private String email;
     private String phone;
     private String password;
+    @Transient
+    private String newPassword;
     private boolean enabled;
     private boolean tokenExpired;
 //    private Date createDate;
 //    private Date modifyDate;
 
+    //    @JsonManagedReference(value = "user-teamUser")
+    @JsonIgnore
     @OneToMany(mappedBy = "team", fetch = FetchType.EAGER)
     private Set<TeamUser> teamUsers;
 
@@ -48,6 +55,14 @@ public class User extends BaseEntity {
 
     @ElementCollection(fetch = FetchType.EAGER)
     private Set<String> roles;
+
+    public String getNewPassword() {
+        return newPassword;
+    }
+
+    public void setNewPassword(String newPassword) {
+        this.newPassword = newPassword;
+    }
 
     public Set<String> getRoles() {
         return roles;
