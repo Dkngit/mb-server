@@ -1,7 +1,10 @@
 package com.example.mbserver.entity;
 
-import javax.persistence.Entity;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import javax.persistence.*;
 import java.util.Date;
+import java.util.Set;
 
 /**
  * @since 2020/4/30
@@ -18,6 +21,30 @@ public class Activity extends BaseEntity {
 
     private Date startTime;
     private Date endTime;
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "activity", fetch = FetchType.LAZY)
+    private Set<TeamUser> teamUsers;
+
+    @ManyToOne
+    @JoinColumn(nullable = false)
+    private TeamServer teamServer;
+
+    public Set<TeamUser> getTeamUsers() {
+        return teamUsers;
+    }
+
+    public void setTeamUsers(Set<TeamUser> teamUsers) {
+        this.teamUsers = teamUsers;
+    }
+
+    public TeamServer getTeamServer() {
+        return teamServer;
+    }
+
+    public void setTeamServer(TeamServer teamServer) {
+        this.teamServer = teamServer;
+    }
 
     public String getName() {
         return name;

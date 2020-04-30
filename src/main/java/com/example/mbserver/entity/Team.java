@@ -21,7 +21,7 @@ public class Team extends BaseEntity {
 
     //    @JsonManagedReference(value = "team-teamUser")
     @JsonIgnore
-    @OneToMany(mappedBy = "team")
+    @OneToMany(mappedBy = "team", fetch = FetchType.LAZY)
     private Set<TeamUser> teamUser;
 
     public Set<TeamUser> getTeamUser() {

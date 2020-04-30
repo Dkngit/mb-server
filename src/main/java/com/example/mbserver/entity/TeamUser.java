@@ -26,6 +26,18 @@ public class TeamUser extends BaseEntity {
     @JoinColumn(nullable = false)
     private User user;
 
+    @ManyToOne
+    @JoinColumn(nullable = false)
+    private Activity activity;
+
+    public Activity getActivity() {
+        return activity;
+    }
+
+    public void setActivity(Activity activity) {
+        this.activity = activity;
+    }
+
     public String getName() {
         return name;
     }

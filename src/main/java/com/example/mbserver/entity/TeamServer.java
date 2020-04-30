@@ -1,8 +1,9 @@
 package com.example.mbserver.entity;
 
-import javax.persistence.Entity;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import javax.persistence.*;
+import java.util.Set;
 
 /**
  * @since 2019/12/7
@@ -15,6 +16,18 @@ public class TeamServer extends BaseEntity {
     private Team team;
     private String name;
     private String ip;
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "teamServer", fetch = FetchType.LAZY)
+    private Set<Activity> activities;
+
+    public Set<Activity> getActivities() {
+        return activities;
+    }
+
+    public void setActivities(Set<Activity> activities) {
+        this.activities = activities;
+    }
 
     public Team getTeam() {
         return team;
